@@ -49,4 +49,39 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, 3000);
     }
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    if (menuBtn && navMenu) {
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close menu when clicking a link
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                // If it's a mobile view and has a dropdown, toggle it instead of closing (unless it's a direct link)
+                if (window.innerWidth <= 850) {
+                    const navItem = link.parentElement;
+                    const hasDropdown = navItem.querySelector('.dropdown');
+                    
+                    if (hasDropdown && link.getAttribute('href') === '#') {
+                        e.preventDefault();
+                        navItem.classList.toggle('active');
+                        return;
+                    }
+                }
+                
+                menuBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+    }
 });
+
