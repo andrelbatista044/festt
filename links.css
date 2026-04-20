@@ -1,10 +1,9 @@
-/* LINKTREE STYLE PAGE */
 .links-page {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 3rem 1rem;
+    padding: 8rem 1rem 3rem;
     position: relative;
     background-color: var(--bg-darker);
 }
